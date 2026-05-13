@@ -115,7 +115,7 @@ export function Pioneers() {
         className="no-scrollbar mt-6 flex w-full gap-5 overflow-x-auto px-4 snap-x snap-mandatory"
       >
         {cards.map((card, i) => (
-          <div key={i} className="w-[400px] flex-shrink-0 snap-center">
+          <div key={i} className="w-[380px] flex-shrink-0 snap-center">
             <div
               className={`rounded-[28px] p-6 h-[560px] flex flex-col ${card.bgColor} ${card.textColor}`}
             >

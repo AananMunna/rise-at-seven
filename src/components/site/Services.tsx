@@ -40,7 +40,7 @@ export function Services() {
               loading="lazy"
               className="h-13 w-13 rounded-xl object-cover"
             />
-            <span className=" whitespace-pre-line text-[26px] leading-[0.05] text-ink font-medium">
+            <span className=" whitespace-pre-line text-[22px] leading-[0.05] text-ink font-medium">
               {s.title}
             </span>
           </li>
