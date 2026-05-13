@@ -15,7 +15,7 @@ const originalCards = [
   },
   {
     title: "Award Winning",
-    image: "/assets/award.jpg",
+    image: "/assets/work-dojo.jpg",
     description:
       "A roll top bath full of 79 awards. Voted The Drum's best agency outside of London. We are official judges for industry awards including Global Search Awards.",
     bgColor: "bg-[#B2F5E1]",
@@ -23,7 +23,7 @@ const originalCards = [
   },
   {
     title: "Speed",
-    image: "/assets/speed.jpg",
+    image: "/assets/work-magnet.jpg",
     description:
       "People ask us why we are called Rise at Seven? Ever heard the saying Early Bird catches the worm? Google is moving fast, but humans are moving faster.",
     bgColor: "bg-[#F3F3F3]",
@@ -39,7 +39,6 @@ export function Pioneers() {
   const { scrollXProgress } = useScroll({
     container: scrollRef,
   });
-
 
   const progressValue = useTransform(scrollXProgress, [0, 1], [0.33, 1]);
 
@@ -115,7 +114,7 @@ export function Pioneers() {
         className="no-scrollbar mt-6 flex w-full gap-5 overflow-x-auto px-4 snap-x snap-mandatory"
       >
         {cards.map((card, i) => (
-          <div key={i} className="w-[380px] flex-shrink-0 snap-center">
+          <div key={i} className="w-[380px] flex-shrink-0 shadow snap-center">
             <div
               className={`rounded-[28px] p-6 h-[560px] flex flex-col ${card.bgColor} ${card.textColor}`}
             >

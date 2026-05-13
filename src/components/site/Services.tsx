@@ -47,10 +47,9 @@ export function Services() {
         ))}
       </ul>
 
-
-         <button className="flex w-full mt-4 items-center justify-center gap-2 rounded-full bg-white py-3 text-[15px] font-medium text-ink shadow-sm transition-transform active:scale-95">
+      <button className="flex w-full mt-4 items-center justify-center gap-2 rounded-full bg-white py-3 text-[15px] font-medium text-ink shadow-sm transition-transform active:scale-95">
         View All Services <ArrowUpRight className="h-4 w-4" />
-        </button>
+      </button>
     </section>
   );
 }

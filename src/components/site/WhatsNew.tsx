@@ -11,7 +11,8 @@ const originalPosts = [
     tag: "Food/Hospitality/Drink",
     author: "Ray Saddiq",
     time: "2 mins",
-    title: "Rise at Seven Appointed by Coneys to Drive Demand and Retail Growth for them in the Chocolate Confectionery Category",
+    title:
+      "Rise at Seven Appointed by Coneys to Drive Demand and Retail Growth for them in the Chocolate Confectionery Category",
   },
   {
     img: "/assets/news-team.jpg",
@@ -36,7 +37,6 @@ const originalPosts = [
   },
 ];
 
-// ৩ বার রিপিট করছি যাতে ইনফিনিট স্ক্রল ফিল পাওয়া যায়
 const posts = [...originalPosts, ...originalPosts, ...originalPosts];
 
 export function WhatsNew() {
@@ -46,7 +46,6 @@ export function WhatsNew() {
     container: scrollRef,
   });
 
-  // যেহেতু ৪টা অরিজিনাল পোস্ট, তাই প্রগ্রেস শুরু হবে ২৫% থেকে
   const progressValue = useTransform(scrollXProgress, [0, 1], [0.25, 1]);
 
   const scaleX = useSpring(progressValue, {
@@ -59,7 +58,6 @@ export function WhatsNew() {
     const el = scrollRef.current;
     if (!el) return;
 
-    // মিডল সেট থেকে শুরু করা
     const startScroll = el.offsetWidth * originalPosts.length;
     el.scrollLeft = startScroll;
 
@@ -67,7 +65,6 @@ export function WhatsNew() {
       const scrollPos = el.scrollLeft;
       const maxScroll = el.scrollWidth - el.offsetWidth;
 
-      // উভয় দিকে লুপ করার লজিক
       if (scrollPos >= maxScroll - 10) {
         el.scrollLeft = startScroll;
       } else if (scrollPos <= 10) {
@@ -89,12 +86,12 @@ export function WhatsNew() {
           width={60}
           height={60}
           className="inline-block mt-1 ml-1 h-[58px] w-[58px] translate-y-[-6px] rounded-xl object-cover align-middle"
-        /> 
+        />
         <br /> New
       </h2>
 
       {/* Both Side Scrollable Container */}
-      <div 
+      <div
         ref={scrollRef}
         className="no-scrollbar mt-8  flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 cursor-grab active:cursor-grabbing px-6"
       >
@@ -136,13 +133,18 @@ export function WhatsNew() {
         />
       </div>
 
-         <button className="flex mt-5 w-full items-center justify-center gap-2 rounded-full bg-white py-3 text-[15px] font-medium text-ink shadow-sm transition-transform active:scale-95">
+      <button className="flex mt-5 w-full items-center justify-center gap-2 rounded-full bg-white py-3 text-[15px] font-medium text-ink shadow-sm transition-transform active:scale-95">
         Explore More Thoughts <ArrowUpRight className="h-4 w-4" />
-        </button>
+      </button>
 
       <style jsx global>{`
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
       `}</style>
     </section>
   );

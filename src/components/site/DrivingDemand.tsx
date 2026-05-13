@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
@@ -55,8 +55,8 @@ export function DrivingDemand() {
                 {logo.name}
               </Logo>
             ))}
-             {/* Set 3 (extra buffer for wide screens) */}
-             {logos.map((logo, index) => (
+            {/* Set 3 (extra buffer for wide screens) */}
+            {logos.map((logo, index) => (
               <Logo key={`set3-${index}`} opacity={logo.opacity}>
                 {logo.name}
               </Logo>
@@ -68,13 +68,13 @@ export function DrivingDemand() {
       <h2 className=" mt-14 text-[48px] font-[500] leading-[0.95] tracking-tight text-ink">
         Driving Demand
         <br />& Discovery
-                   <Image
-                      src="/assets/redbull-thumb.jpg"
-                      alt=""
-                      width={60}
-                      height={60}
-                      className="inline-block mt-1 ml-1 h-[58px] w-[58px] translate-y-[-6px] rounded-xl object-cover align-middle"
-                    />
+        <Image
+          src="/assets/redbull-thumb.jpg"
+          alt=""
+          width={60}
+          height={60}
+          className="inline-block mt-1 ml-1 h-[58px] w-[58px] translate-y-[-6px] rounded-xl object-cover align-middle"
+        />
       </h2>
 
       <p className="mt-2 text-[18px] leading-[1.45] text-ink">
@@ -90,7 +90,7 @@ export function DrivingDemand() {
           Our Services <ArrowUpRight className="h-4 w-4" />
         </button>
       </div>
-      
+
       <style jsx global>{`
         /* Hide scrollbar for Chrome, Safari and Opera */
         .no-scrollbar::-webkit-scrollbar {
@@ -98,13 +98,17 @@ export function DrivingDemand() {
         }
         /* Hide scrollbar for IE, Edge and Firefox */
         .no-scrollbar {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
+          -ms-overflow-style: none; /* IE and Edge */
+          scrollbar-width: none; /* Firefox */
         }
 
         @keyframes infinite-scroll {
-          from { transform: translateX(0); }
-          to { transform: translateX(-33.33%); }
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-33.33%);
+          }
         }
         .animate-infinite-scroll {
           animation: infinite-scroll 30s linear infinite;

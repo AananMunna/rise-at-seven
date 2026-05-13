@@ -51,18 +51,15 @@ export function Hero() {
           We Create
           <br />
           Category
- <Image
-                      src="/assets/redbull-thumb.jpg"
-                      alt=""
-                      width={60}
-                      height={60}
-                      className="inline-block mt-1 ml-1 h-[58px] w-[58px] translate-y-[-6px] rounded-xl object-cover align-middle"
-                    />
+          <Image
+            src="/assets/redbull-thumb.jpg"
+            alt=""
+            width={60}
+            height={60}
+            className="inline-block mt-1 ml-1 h-[58px] w-[58px] translate-y-[-6px] rounded-xl object-cover align-middle"
+          />
           <br />
-          <span className="inline-flex items-center gap-2">
-            Leaders
-           
-          </span>
+          <span className="inline-flex items-center gap-2">Leaders</span>
         </h1>
 
         <p className="mt-1 text-center text-[19px]">
