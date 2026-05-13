@@ -41,21 +41,21 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
 
   return (
     <div
-      className={`fixed inset-y-0 left-1/2 z-[60] flex w-full max-w-[430px] -translate-x-1/2 items-center justify-center p-2 transition-all duration-500 ease-out ${
+      className={`fixed inset-y-0 left-1/2 z-[60] flex w-full max-w-[430px] -translate-x-1/2 items-center justify-center py-2 pr-2 transition-all duration-500 ease-out ${
         open
           ? "opacity-100 pointer-events-auto"
           : "opacity-0 pointer-events-none"
       }`}
     >
-*     <div
+      *{" "}
+      <div
         className="fixed inset-0 bg-black/40 backdrop-blur-sm"
         onClick={onClose}
       />
-
       {/* Menu Container */}
       <div
         className={`relative flex h-full w-full flex-col overflow-hidden rounded-[28px] bg-[#1a1a1a]/95 p-4 text-white shadow-2xl ring-1 ring-white/10 transition-transform duration-500 ${
-          open ? "scale-100" : "scale-98" 
+          open ? "scale-100" : "scale-98"
         }`}
       >
         {/* Header with SVG Logo */}
