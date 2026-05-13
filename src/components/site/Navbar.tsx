@@ -38,14 +38,14 @@ export function Navbar({ light = true }: NavbarProps) {
     <>
       <header
         className={`
-    fixed z-50 flex items-center justify-between px-6 py-4
-    transition-all duration-500 ease-in-out
-    left-1/2 -translate-x-1/2 w-full max-w-[430px] 
-    ${show ? "translate-y-0" : "-translate-y-full"}
-    ${isHero ? "top-14 bg-transparent" : "top-0 bg-white/40 backdrop-blur-md"}
-  `}
+          fixed z-50 flex items-center justify-between px-6 py-4
+          transition-all duration-500 ease-in-out
+          left-1/2 -translate-x-1/2 w-full max-w-[430px]
+          ${show ? "translate-y-0" : "-translate-y-full"}
+          ${isHero ? "top-14 bg-transparent" : "top-0 bg-white/40 backdrop-blur-md"}
+        `}
       >
-        {/* Logo - Updated to SVG */}
+        {/* Logo */}
         <a
           href="/"
           className={`flex items-center transition-colors duration-300 ${iconColor}`}
@@ -75,14 +75,22 @@ export function Navbar({ light = true }: NavbarProps) {
           </div>
         </a>
 
-        {/* Hamburger */}
+        {/* Animated Hamburger → X button */}
         <button
-          aria-label="Open menu"
-          onClick={() => setOpen(true)}
-          className={`flex flex-col gap-[5px] p-2 transition-colors duration-300 ${iconColor}`}
+          aria-label={open ? "Close menu" : "Open menu"}
+          onClick={() => setOpen((prev) => !prev)}
+          className={`relative flex h-10 w-10 flex-col items-center justify-center gap-[5px] p-2 transition-colors duration-300 ${iconColor}`}
         >
-          <span className="block h-[2px] w-6 bg-current" />
-          <span className="block h-[2px] w-6 bg-current" />
+          <span
+            className={`block h-[2px] w-6 bg-current transition-all duration-300 ease-in-out origin-center ${
+              open ? "translate-y-[3.5px] rotate-45" : ""
+            }`}
+          />
+          <span
+            className={`block h-[2px] w-6 bg-current transition-all duration-300 ease-in-out origin-center ${
+              open ? "-translate-y-[3.5px] -rotate-45" : ""
+            }`}
+          />
         </button>
       </header>
 
