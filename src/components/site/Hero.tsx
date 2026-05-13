@@ -14,59 +14,61 @@ export function Hero() {
       />
       <div className="absolute inset-0 bg-black/20" />
 
-      <div className="relative px-6 pb-16 pt-70 text-white">
-        <div className="text-center">
-          <p className="text-[13px] font-semibold tracking-wide">
-            #1 MOST RECOMMENDED
-            <br />
-            CONTENT MARKETING AGENCY
-          </p>
+      <div className="relative flex flex-col justify-between px-6 pb-10 pt-16 text-white h-full">
+        <div></div>
+        <div>
+          <div className="text-center">
+            <p className="text-[13px] font-semibold tracking-wide">
+              #1 MOST RECOMMENDED
+              <br />
+              CONTENT MARKETING AGENCY
+            </p>
 
-          <div className="mt-0 flex items-center justify-center gap-4 opacity-90">
-            <LaurelIcon />
-            <Image
-              src="/assets/global-search-awards.webp"
-              width={40}
-              height={10}
-              alt="awards"
-            />
-            <Image
-              src="/assets/Mask-group.webp"
-              width={30}
-              height={10}
-              alt="awards"
-            />
-            <Image
-              src="/assets/UKSocial-Media-Awards-White.webp"
-              width={40}
-              height={10}
-              alt="awards"
-            />
-
-            <LaurelIcon flip />
+            <div className="mt-0 flex items-center justify-center gap-4 opacity-90">
+              <LaurelIcon />
+              <Image
+                src="/assets/global-search-awards.webp"
+                width={40}
+                height={10}
+                alt="awards"
+              />
+              <Image
+                src="/assets/Mask-group.webp"
+                width={30}
+                height={10}
+                alt="awards"
+              />
+              <Image
+                src="/assets/UKSocial-Media-Awards-White.webp"
+                width={40}
+                height={10}
+                alt="awards"
+              />
+              <LaurelIcon flip />
+            </div>
           </div>
+
+          <h1 className="mt-2 text-center text-[58px] font-bold leading-[0.92] tracking-tight">
+            We Create
+            <br />
+            Category
+            <Image
+              src="/assets/redbull-thumb.jpg"
+              alt=""
+              width={60}
+              height={60}
+              className="inline-block mt-1 ml-1 h-[58px] w-[58px] translate-y-[-6px] rounded-xl object-cover align-middle"
+            />
+            <br />
+            <span className="inline-flex items-center gap-2">Leaders</span>
+          </h1>
+
+          <p className="mt-1 text-center text-[19px]">
+            on every searchable platform
+          </p>
         </div>
 
-        <h1 className=" mt-2 text-center text-[58px] font-bold leading-[0.92] tracking-tight">
-          We Create
-          <br />
-          Category
-          <Image
-            src="/assets/redbull-thumb.jpg"
-            alt=""
-            width={60}
-            height={60}
-            className="inline-block mt-1 ml-1 h-[58px] w-[58px] translate-y-[-6px] rounded-xl object-cover align-middle"
-          />
-          <br />
-          <span className="inline-flex items-center gap-2">Leaders</span>
-        </h1>
-
-        <p className="mt-1 text-center text-[19px]">
-          on every searchable platform
-        </p>
-
-        <p className="mt-67 text-center text-[15px] font-semibold">
+        <p className="text-center text-[15px] font-semibold">
           4 Global Offices serving
           <br />
           UK, USA (New York) & EU
