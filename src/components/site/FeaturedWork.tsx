@@ -3,7 +3,6 @@
 import { useRef, useEffect } from "react";
 import Image from "next/image";
 import { Search, TrendingUp, ArrowUpRight } from "lucide-react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 const items = [
   {
@@ -76,89 +75,92 @@ const items = [
 
 export function FeaturedWork() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const scrollableContentRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
 
-  // 1. Smooth Scroll Logic with Framer Motion
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  // Add a spring for that "premium" smooth lag-free feel
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
-  // Map the progress to scroll pixels
   useEffect(() => {
-    return smoothProgress.on("change", (latest) => {
-      if (scrollableContentRef.current) {
-        const maxScroll =
-          scrollableContentRef.current.scrollHeight -
-          scrollableContentRef.current.clientHeight;
-        scrollableContentRef.current.scrollTop = latest * maxScroll;
-      }
+    const container = containerRef.current;
+    const panel = panelRef.current;
+    const list = listRef.current;
+    if (!container || !panel || !list) return;
 
-      // 2. Navbar Toggle Logic
-      // Dispatch a custom event so the Navbar knows we are in the 'Sticky Zone'
-      const isEntering = latest > 0.01 && latest < 0.99;
+    const onScroll = () => {
+      const { top, height } = container.getBoundingClientRect();
+      // how far we've scrolled INTO the sticky zone (0 → stickyScrollable)
+      const stickyScrollable = height - window.innerHeight;
+      const scrolled = Math.max(0, Math.min(-top, stickyScrollable));
+      const progress = scrolled / stickyScrollable;
+
+      const maxTranslate = list.scrollHeight - panel.clientHeight + 48; // +48px to reveal last card fully
+      list.style.transform = `translateY(${-progress * maxTranslate}px)`;
+
+      // navbar event
+      const isActive = progress > 0.01 && progress < 0.99;
       window.dispatchEvent(
-        new CustomEvent("featured-work-status", { detail: isEntering }),
+        new CustomEvent("featured-work-status", { detail: isActive }),
       );
-    });
-  }, [smoothProgress]);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <>
-      <div ref={containerRef} className="relative h-[450vh] w-full">
-        <div className="sticky top-0 flex h-screen w-full flex-col justify-center p-3">
-          <section className="flex h-[calc(100vh-24px)] w-full flex-col rounded-[28px] bg-ink px-5 py-0 text-white shadow-2xl">
-            <div
-              ref={scrollableContentRef}
-              className="no-scrollbar mt-2 flex-1 space-y-4 overflow-hidden rounded-xl"
-            >
-              <div className="flex items-center justify-between py-2">
-                <h3 className="font-display text-[22px] font-bold tracking-tight text-white">
-                  Featured Work
-                </h3>
-              </div>
-              {items.map((it, i) => (
-                <div
-                  key={i}
-                  className="relative overflow-hidden rounded-2xl ring-1 ring-white/10"
-                >
-                  <Image
-                    src={it.img}
-                    alt={it.title}
-                    width={400}
-                    height={300}
-                    className="h-[280px] w-full object-cover"
-                  />
-                  {it.tag && (
-                    <div className="absolute right-4 top-4 flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-[13px] backdrop-blur-xl">
-                      <Search className="h-3.5 w-3.5" />
-                      <span>{it.tag}</span>
-                      <TrendingUp className="h-3.5 w-3.5" />
-                    </div>
-                  )}
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-6">
-                    <p className="text-[12px] font-medium opacity-60 uppercase">
-                      {it.year}
-                    </p>
-                    <p className="font-display text-[30px] leading-none font-bold mt-1">
-                      {it.title}
-                    </p>
-                  </div>
+      <div ref={containerRef} className="relative h-[380vh] w-full">
+        <div className="sticky top-0 h-screen w-full flex flex-col justify-center p-3">
+          <section
+            ref={panelRef}
+            className="flex h-[calc(100vh-24px)] w-full flex-col rounded-[28px] bg-ink px-5 text-white shadow-2xl overflow-hidden"
+          >
+            {/* No overflow, no spring, no transform chain — raw translateY on scroll */}
+            <div className="flex-1 overflow-hidden relative">
+              <div
+                ref={listRef}
+                className="space-y-4 pb-8 will-change-transform"
+                style={{ transform: "translateY(0px)" }}
+              >
+                <div className="flex items-center justify-between py-2">
+                  <h3 className="font-display text-[22px] font-bold tracking-tight text-white">
+                    Featured Work
+                  </h3>
                 </div>
-              ))}
+                {items.map((it, i) => (
+                  <div
+                    key={i}
+                    className="relative overflow-hidden rounded-2xl ring-1 ring-white/10"
+                  >
+                    <Image
+                      src={it.img}
+                      alt={it.title}
+                      width={400}
+                      height={300}
+                      className="h-[280px] w-full object-cover"
+                    />
+                    {it.tag && (
+                      <div className="absolute right-4 top-4 flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-[13px] backdrop-blur-xl">
+                        <Search className="h-3.5 w-3.5" />
+                        <span>{it.tag}</span>
+                        <TrendingUp className="h-3.5 w-3.5" />
+                      </div>
+                    )}
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-6">
+                      <p className="text-[12px] font-medium opacity-60 uppercase">
+                        {it.year}
+                      </p>
+                      <p className="font-display text-[30px] leading-none font-bold mt-1">
+                        {it.title}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
         </div>
       </div>
 
-      <div className="mt-1 space-y-4 mx-4">
+      <div className="mt-1 mx-4">
         <button className="flex w-full items-center justify-center gap-2 rounded-full bg-white py-3 text-[15px] font-medium text-ink shadow-sm transition-transform active:scale-95">
           Explore Our Work <ArrowUpRight className="h-5 w-5" />
         </button>
